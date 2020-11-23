@@ -10,9 +10,3 @@ demographics:
       num: 1000
       prob_happy: 0.9
       color: indigo
-
-neighbors:
-  blue_buddies:
-    location_1: ocean
-    location_2: sky
-    distance: 90

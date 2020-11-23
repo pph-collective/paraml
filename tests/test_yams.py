@@ -10,7 +10,7 @@ def_path = "tests/params/defs.yaml"
 
 def test_create_params_merging():
     params = create_params(
-        def_path, "tests/params/a.yaml", "tests/params/b.yaml", "tests/params/c.yaml"
+        def_path, "tests/params/a.yaml", "tests/params/b", "tests/params/c.yaml"
     )
 
     assert "cat" in params["classes"]["animals"]
@@ -44,7 +44,7 @@ def test_create_params_write_read(tmpdir):
     params = create_params(
         def_path,
         "tests/params/a.yaml",
-        "tests/params/b.yaml",
+        "tests/params/b",
         "tests/params/c.yaml",
         out_path=out_path,
     )
