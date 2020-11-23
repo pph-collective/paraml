@@ -175,7 +175,7 @@ a:
 
 Every parameter item must have the `type`, and `default` keys (`description` highly encouraged, but not required).
 
-See [#types] for more information on the types and how they interact with the other keys.
+See [Types](#types) for more information on the types and how they interact with the other keys.
 
 The `default` key should be a valid value given the rest of the definition.  The `default` key can include parameter definitions within it.  This is common with `sub-dict` param definitions.
 
