@@ -1,6 +1,6 @@
 # yams (YAML Params)
 
-[![codecov](https://codecov.io/gh/marshall-lab/yams/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/yams)[![](https://github.com/marshall-lab/yams/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/TITAN/actions)[![GitHub](https://img.shields.io/github/license/marshall-lab/yams)](https://github.com/marshall-lab/yams/blob/main/LICENSE)
+[![codecov](https://codecov.io/gh/marshall-lab/yams/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/yams) [![](https://github.com/marshall-lab/yams/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/TITAN/actions) [![GitHub](https://img.shields.io/github/license/marshall-lab/yams)](https://github.com/marshall-lab/yams/blob/main/LICENSE)
 
 yams is a parameter definition language and parser - all in yaml.
 
