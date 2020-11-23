@@ -1,4 +1,4 @@
-# yams (YAML Params)
+# :potato: yams :potato: (YAML Params)
 
 [![codecov](https://codecov.io/gh/marshall-lab/yams/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/yams) [![](https://github.com/marshall-lab/yams/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/TITAN/actions) [![GitHub](https://img.shields.io/github/license/marshall-lab/yams)](https://github.com/marshall-lab/yams/blob/main/LICENSE)
 
