@@ -1,0 +1,94 @@
+classes:
+  animals:
+    type: definition
+    description: Animals included in model
+    fields:
+      goes:
+        type: any
+        description: What noise does the animal make?
+        default: oink
+      is_mammal:
+        type: boolean
+        description: Is this animal a mammal
+        default: false
+      friends_with:
+        type: keys
+        desciption: What animals does this animal befriend
+    default:
+      cat:
+        goes: meow
+        is_mammal: true
+        friends_with:
+          - cat
+          - dog
+      dog:
+        goes: woof
+        is_mammal: true
+        friends_with:
+          - dog
+          - turtle
+          - cat
+      turtle:
+        goes: gurgle
+        friends_with:
+          - dog
+          - turtle
+  locations:
+    type: array
+    description: Where do the animals go?
+    default:
+      - barn
+      - ocean
+    values:
+      - barn
+      - ocean
+      - sky
+      - woods
+
+demographics:
+  type: sub-dict
+  description: "Parameters controlling population class level probabilities and behaviors"
+  keys:
+    - animals
+    - locations
+  default:
+    num:
+      type: int
+      default: 10
+      description: Number of animals of this type at this location
+    prob_happy:
+      type: float
+      default: 1.0
+      description: Probability an animal is happy
+      min: 0.0
+      max: 1.0
+    color:
+      type: enum
+      default: blue
+      description: What's the color of this animal/location combo
+      values:
+        - blue
+        - indigo
+        - cyan
+
+neighbors:
+  type: definition
+  description: Definition of an edge (relationship) between two locations
+  fields:
+    location_1:
+      type: enum
+      default: barn
+      class: locations
+    location_2:
+      type: enum
+      default: sky
+      class: locations
+    distance:
+      type: float
+      default: 0
+      min: 0
+  default:
+    edge_default:
+      location_1: barn
+      location_2: sky
+      distance: 1000

@@ -1,0 +1,11 @@
+demographics:
+  turtle:
+    ocean:
+      num: 50
+      prob_happy: 0.95
+      color: indigo
+  cat:
+    barn:
+      num: 2
+      prob_happy: 0.7
+      color: cyan

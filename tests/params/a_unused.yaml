@@ -1,0 +1,19 @@
+classes:
+  locations:
+    - ocean
+    - barn
+    - sky
+
+demographics:
+  turtle:
+    ocean:
+      num: 1000
+      prob_happy: 0.9
+      color: indigo
+      shell: tortoise
+
+neighbors:
+  blue_buddies:
+    location_1: ocean
+    location_2: sky
+    distance: 90

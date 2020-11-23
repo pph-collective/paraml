@@ -1,0 +1,18 @@
+classes:
+  locations:
+    - ocean
+    - barn
+    - sky
+
+demographics:
+  turtle:
+    ocean:
+      num: 1000
+      prob_happy: 1.2 # above max
+      color: indigo
+
+neighbors:
+  blue_buddies:
+    location_1: ocean
+    location_2: sky
+    distance: 90
