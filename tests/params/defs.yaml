@@ -70,6 +70,28 @@ demographics:
         - blue
         - indigo
         - cyan
+    age_bins:
+      type: bin
+      description: What age the animals in this location are
+      fields:
+        prob:
+          type: float
+          min: 0.0
+          max: 1.0
+        age:
+          type: int
+          min: 0
+          max: 145
+      default:
+        1:
+          prob: 0.4
+          age: 3
+        2:
+          prob: 0.25
+          age: 8
+        3:
+          prob: 0.35
+          age: 12
 
 neighbors:
   type: definition

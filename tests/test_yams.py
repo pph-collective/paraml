@@ -14,6 +14,7 @@ def test_create_params_merging():
     )
 
     assert "cat" in params["classes"]["animals"]
+    assert params["demographics"]["cat"]["barn"]["age_bins"][1]["age"] == 3
     assert params["demographics"]["cat"]["barn"]["color"] == "indigo"
     assert params["demographics"]["cat"]["barn"]["num"] == 2
     assert params["demographics"]["turtle"]["ocean"]["prob_happy"] == 0.95
