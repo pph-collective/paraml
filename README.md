@@ -15,13 +15,13 @@ TBD
 The entrypoint for running yams is `yams.create_params`.  This takes the parameter definitions, parameter files, and some options and returns a dictionary of the validated and computed parameters.
 
 **Args:**
-  `def_path`: A yaml file or directory of yaml files containing the parameter definitions (see [Parameter Definition](#parameter-definition)).
-  `*param_paths`: The remaining args are interpreted as parameter files.  They will be merged in order (last merged value prevails).
-  `out_path`: Optional, if passed, save the computed parameters as a yaml to this location.
-  `error_on_unused`: Optional, if `True` throw an exception if there are parameters in `param_paths` that do not have a corresponding definition in the `def_path` definitions.
+  * `def_path`: A yaml file or directory of yaml files containing the parameter definitions (see [Parameter Definition](#parameter-definition)).
+  * `*param_paths`: The remaining args are interpreted as parameter files.  They will be merged in order (last merged value prevails).
+  * `out_path`: Optional, if passed, save the computed parameters as a yaml to this location.
+  * `error_on_unused`: Optional, if `True` throw an exception if there are parameters in `param_paths` that do not have a corresponding definition in the `def_path` definitions.
 
 **Returns:**
-A dictionary representing the parsed parameters.
+ * A dictionary representing the parsed parameters.
 
 ```python
 from yams import create_params
