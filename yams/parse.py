@@ -230,9 +230,7 @@ def warn_unused_params(parsed, params, key_path):
 
     for k, v in params.items():
         if k in parsed:
-            count += warn_unused_params(
-                parsed[k], params[k], f"{key_path}.{k}"
-            )
+            count += warn_unused_params(parsed[k], params[k], f"{key_path}.{k}")
         else:
             print(f"[{key_path}.{k}] is unused")
             count += 1
