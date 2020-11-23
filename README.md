@@ -1,5 +1,7 @@
 # yams (YAML Params)
 
+[![codecov](https://codecov.io/gh/marshall-lab/yams/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/yams)[![GitHub](https://img.shields.io/github/license/marshall-lab/yams)]
+
 yams is a parameter definition language and parser - all in yaml.
 
 ## Parameter Definition
