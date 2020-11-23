@@ -4,6 +4,45 @@
 
 yams is a parameter definition language and parser - all in yaml.
 
+## Getting Started
+
+### Installation
+
+TBD
+
+### Running yams
+
+The entrypoint for running yams is `yams.create_params`.  This takes the parameter definitions, parameter files, and some options and returns a dictionary of the validated and computed parameters.
+
+**Args:**
+  `def_path`: A yaml file or directory of yaml files containing the parameter definitions (see [Parameter Definition](#parameter-definition)).
+  `*param_paths`: The remaining args are interpreted as parameter files.  They will be merged in order (last merged value prevails).
+  `out_path`: Optional, if passed, save the computed parameters as a yaml to this location.
+  `error_on_unused`: Optional, if `True` throw an exception if there are parameters in `param_paths` that do not have a corresponding definition in the `def_path` definitions.
+
+**Returns:**
+A dictionary representing the parsed parameters.
+
+```python
+from yams import create_params
+
+def_path = "my/params/dir" # file location of the params definitions
+base_params = "base/params.yaml" # file location of the first params
+setting_param = "settings/my_setting" # file location of the second params
+intervention_params = "intervention/params" # file location of the third params
+out_path = "./params.yml" # location to save computed params to
+
+params = create_params(
+  def_path,
+  base_params,
+  setting_params,
+  intervention_params,
+  out_path=out_path,
+  error_on_unused=True # if parameters are passed, but don't exist in the definition file, error
+)
+```
+
+
 ## Parameter Definition
 
 The parameter definition language (PDL) provides expressions for defining input types, creation of types for the target application, and simple validation of input values.  The PDL itself is YAML and can be defined either in one file or a directory of yaml files.
