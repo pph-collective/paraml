@@ -6,6 +6,8 @@ paraml is a parameter definition language and parser - all in yaml.
 
 ## Table of Contents
 
+*Note:* README internal links only work on [GitHub](https://github.com/marshall-lab/paraml)
+
 1. [Motivation](#motivation)
 2. [Getting Started](#getting-started)
     - [Installation](#installation)

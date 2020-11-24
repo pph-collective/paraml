@@ -9,7 +9,7 @@ authors = [
 license = "GPLv3"
 readme = "README.md"
 homepage = "https://github.com/marshall-lab/paraml"
-repository = "https://github.com/marshall-lab/flake8-paraml"
+repository = "https://github.com/marshall-lab/paraml"
 keywords = ["yaml", "params", "parameters", "config", "validation"]
 classifiers = [
     "Operating System :: OS Independent",
