@@ -60,7 +60,7 @@ The entrypoint for running paraml is `paraml.create_params`.  This takes the par
 
 **Example usage:**
 ```python
-from yaml_params import create_params
+from paraml import create_params
 
 def_path = "my/params/dir" # directory of the params definition files
 base_params = "base/params.yaml" # file location of the first params
