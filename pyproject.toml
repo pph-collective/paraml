@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paraml"
-version = "0.1.0"
+version = "0.1.0.dev1"
 description = "a parameter definition language and parser - all in yaml"
 authors = [
     "mcmcgrath13",

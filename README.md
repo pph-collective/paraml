@@ -1,6 +1,6 @@
 # paraml (Param YAML)
 
-[![codecov](https://codecov.io/gh/marshall-lab/paraml/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/paraml) [![](https://github.com/marshall-lab/paraml/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/TITAN/actions) [![GitHub](https://img.shields.io/github/license/marshall-lab/paraml)](https://github.com/marshall-lab/paraml/blob/main/LICENSE)
+[![codecov](https://codecov.io/gh/marshall-lab/paraml/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/paraml) [![](https://github.com/marshall-lab/paraml/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/paraml/actions) [![GitHub](https://img.shields.io/github/license/marshall-lab/paraml)](https://github.com/marshall-lab/paraml/blob/main/LICENSE)
 
 paraml is a parameter definition language and parser - all in yaml.
 
