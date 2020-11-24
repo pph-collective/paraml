@@ -1,8 +1,25 @@
 [tool.poetry]
-name = "yams"
-version = "0.1.0"
-description = ""
-authors = ["mcmcgrath13 <m.c.mcgrath13@gmail.com>"]
+name = "paraml"
+version = "0.1.0.dev1"
+description = "a parameter definition language and parser - all in yaml"
+authors = [
+    "mcmcgrath13",
+    "s-bessey"
+]
+license = "GPLv3"
+readme = "README.md"
+homepage = "https://github.com/marshall-lab/paraml"
+repository = "https://github.com/marshall-lab/paraml"
+keywords = ["yaml", "params", "parameters", "config", "validation"]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+]
+include = [
+    "LICENSE",
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"

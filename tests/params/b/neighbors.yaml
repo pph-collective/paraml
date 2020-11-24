@@ -1,0 +1,5 @@
+neighbors:
+  blue_buddies:
+    location_1: ocean
+    location_2: sky
+    distance: 90

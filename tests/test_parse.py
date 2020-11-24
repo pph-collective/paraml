@@ -2,16 +2,20 @@ import pytest
 import os
 import oyaml as yaml
 
-from yams.parse import *
+from paraml.parse import *
 
 
 def_path = "tests/params/defs.yaml"
 
 
 def test_create_params_merging():
-    params = create_params(def_path, "tests/params/a.yaml", "tests/params/b.yaml", "tests/params/c.yaml")
+    params = create_params(
+        def_path, "tests/params/a.yaml", "tests/params/b", "tests/params/c.yaml"
+    )
 
     assert "cat" in params["classes"]["animals"]
+    assert params["demographics"]["cat"]["barn"]["age_bins"][1]["age"] == 3
+    assert params["demographics"]["cat"]["barn"]["age_bins"][2]["age"] == 14
     assert params["demographics"]["cat"]["barn"]["color"] == "indigo"
     assert params["demographics"]["cat"]["barn"]["num"] == 2
     assert params["demographics"]["turtle"]["ocean"]["prob_happy"] == 0.95
@@ -26,6 +30,7 @@ def test_create_params_error():
 
     assert "[.demographics.turtle.ocean.prob_happy]" in str(excinfo.value)
 
+
 def test_create_params_error_unused():
     param_file_bad_val = "tests/params/a_unused.yaml"
     with pytest.raises(AssertionError) as excinfo:
@@ -36,7 +41,13 @@ def test_create_params_error_unused():
 
 def test_create_params_write_read(tmpdir):
     out_path = os.path.join(tmpdir, "params.yml")
-    params = create_params(def_path, "tests/params/a.yaml", "tests/params/b.yaml", "tests/params/c.yaml", out_path=out_path)
+    params = create_params(
+        def_path,
+        "tests/params/a.yaml",
+        "tests/params/b",
+        "tests/params/c.yaml",
+        out_path=out_path,
+    )
 
     read_params = build_yaml(out_path)
 

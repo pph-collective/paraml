@@ -2,3 +2,6 @@ demographics:
   cat:
     barn:
       color: indigo
+      age_bins:
+        2:
+          age: 14

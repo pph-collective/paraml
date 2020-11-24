@@ -1,7 +1,7 @@
 import oyaml as yaml  # type: ignore
 import os
 import collections
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 
 
 # ============== PARSING FUNCTIONS ======================
@@ -230,9 +230,7 @@ def warn_unused_params(parsed, params, key_path):
 
     for k, v in params.items():
         if k in parsed:
-            count += warn_unused_params(
-                parsed[k], params[k], f"{key_path}.{k}"
-            )
+            count += warn_unused_params(parsed[k], params[k], f"{key_path}.{k}")
         else:
             print(f"[{key_path}.{k}] is unused")
             count += 1
@@ -245,7 +243,7 @@ def create_params(
     *param_paths,
     error_on_unused: bool = False,
     out_path: Optional[str] = None,
-) -> Dict:
+) -> Dict[str, Any]:
     """
     Entry function - given the path to the parameter definitions and files, parse and create a params dictionary.
 
@@ -262,7 +260,7 @@ def create_params(
     """
     defs = build_yaml(defn_path)
 
-    params = {}
+    params: Dict[str, Any] = {}
     for param_path in param_paths:
         cur_params = build_yaml(param_path)
         params = merge(params, cur_params)
