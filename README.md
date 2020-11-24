@@ -1,25 +1,32 @@
-# :potato: yams :potato: (YAML Params)
+# paraml (Param YAML)
 
-[![codecov](https://codecov.io/gh/marshall-lab/yams/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/yams) [![](https://github.com/marshall-lab/yams/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/TITAN/actions) [![GitHub](https://img.shields.io/github/license/marshall-lab/yams)](https://github.com/marshall-lab/yams/blob/main/LICENSE)
+[![codecov](https://codecov.io/gh/marshall-lab/paraml/branch/main/graph/badge.svg?token=IPaq8iFzsM)](https://codecov.io/gh/marshall-lab/paraml) [![](https://github.com/marshall-lab/paraml/workflows/Unit%20Tests/badge.svg)](https://github.com/marshall-lab/TITAN/actions) [![GitHub](https://img.shields.io/github/license/marshall-lab/paraml)](https://github.com/marshall-lab/paraml/blob/main/LICENSE)
 
-yams is a parameter definition language and parser - all in yaml.
+paraml is a parameter definition language and parser - all in yaml.
 
 ## Table of Contents
 
-TO DO
+1. [Motivation](#motivation)
+2. [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Running paraml](#running-paraml)
+3. [Parameter Definition](#parameter-definition)
+  - [Required Keys](#required-keys)
+  - [Types](#types)
+  - [Using Classes](#using-classes)
 
 ## Motivation
-yams is a spinoff from [TITAN](https://github.com/marshall-lab/TITAN), an agent based model.  We have many parameters in that model, many of which are not used in a given run. yams addresses the following pain points we had:
+paraml is a spinoff from [TITAN](https://github.com/marshall-lab/TITAN), an agent based model.  We have many parameters in that model, many of which are not used in a given run. paraml addresses the following pain points we had:
 
-* Parameters often weren't defined anywhere - some had comments, some were hopefully named idiomatically, this caused issues onboarding new people to using the model
-* Parameters were statically defined/hard coded, but often we wanted them to be dynamic
-* Parameters needed to be filled out/defined by non-technical researchers - shouldn't need to know how to code to create a parameter file
-* Parameters need to have specific validation (e.g. a probability should be between 0 and 1, only `a` or `b` are expected values for parameter `y`), this was typically a run time failure - sometimes silent, sometimes explosive
-* If a user isn't using a feature of the model, they shouldn't have to worry about/carry around its parameters
-* Reproducibility of the run is key - must be able to re-run the model with the same params
-* We needed to be able to create common settings which described a specific world the model runs in and let users use those, but also override parameters as they needed for their run of the model
+* Parameters often weren't formally defined/described anywhere - some had comments, some were hopefully named idiomatically. This caused issues onboarding new people to using the model.
+* Parameters were statically defined/hard coded, but often we wanted them to be dynamic.
+* Parameters needed to be filled out/defined by non-technical researchers - shouldn't need to know how to code to create a parameter file.
+* Parameters need to have specific validation (e.g. a probability should be between 0 and 1, only `a` or `b` are expected values for parameter `y`), this was typically a run time failure - sometimes silent, sometimes explosive.
+* If a user isn't using a feature of the model, they shouldn't have to worry about/carry around its parameters.
+* Reproducibility of the run is key - must be able to re-run the model with the same params.
+* We needed to be able to create common settings which described a specific world the model runs in and let users use those, but also override parameters as they needed for their run of the model.
 
-How yams addresses these:
+How paraml addresses these:
 * Parameter definitions require defaults
 * Can add descriptions of parameters inline
 * A small type system allows validation of params, as well as flexibility to define interfaces for params
@@ -31,11 +38,13 @@ How yams addresses these:
 
 ### Installation
 
-TBD
+```
+pip install yaml-params
+```
 
-### Running yams
+### Running paraml
 
-The entrypoint for running yams is `yams.create_params`.  This takes the parameter definitions, parameter files, and some options and returns a dictionary of the validated and computed parameters.
+The entrypoint for running paraml is `paraml.create_params`.  This takes the parameter definitions, parameter files, and some options and returns a dictionary of the validated and computed parameters.
 
 **Args:**
   * `def_path`: A yaml file or directory of yaml files containing the parameter definitions (see [Parameter Definition](#parameter-definition)).
@@ -49,7 +58,7 @@ The entrypoint for running yams is `yams.create_params`.  This takes the paramet
 
 **Example usage:**
 ```python
-from yams import create_params
+from yaml_params import create_params
 
 def_path = "my/params/dir" # directory of the params definition files
 base_params = "base/params.yaml" # file location of the first params
@@ -449,7 +458,7 @@ name:
 
 Example usage:
 ```yml
-name: yams
+name: paraml
 ```
 
 #### `bin`

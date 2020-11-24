@@ -35,17 +35,17 @@ jobs:
         run: poetry run black . --check
 
       - name: Static Type check
-        run: poetry run mypy yams
+        run: poetry run mypy paraml
 
       - name: Linting
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          poetry run flake8 yams --count --select=E9,F63,F7,F82 --show-source --statistics
+          poetry run flake8 paraml --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          poetry run flake8 yams --count --exit-zero --max-complexity=12 --max-line-length=88 --statistics
+          poetry run flake8 paraml --count --exit-zero --max-complexity=12 --max-line-length=88 --statistics
 
       - name: Test with pytest
-        run: poetry run pytest --cov=yams --cov-report=xml
+        run: poetry run pytest --cov=paraml --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1

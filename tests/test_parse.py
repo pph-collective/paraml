@@ -2,7 +2,7 @@ import pytest
 import os
 import oyaml as yaml
 
-from yams.parse import *
+from paraml.parse import *
 
 
 def_path = "tests/params/defs.yaml"
