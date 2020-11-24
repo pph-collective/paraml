@@ -4,6 +4,29 @@
 
 yams is a parameter definition language and parser - all in yaml.
 
+## Table of Contents
+
+TO DO
+
+## Motivation
+yams is a spinoff from [TITAN](https://github.com/marshall-lab/TITAN), an agent based model.  We have many parameters in that model, many of which are not used in a given run. yams addresses the following pain points we had:
+
+* Parameters often weren't defined anywhere - some had comments, some were hopefully named idiomatically, this caused issues onboarding new people to using the model
+* Parameters were statically defined/hard coded, but often we wanted them to be dynamic
+* Parameters needed to be filled out/defined by non-technical researchers - shouldn't need to know how to code to create a parameter file
+* Parameters need to have specific validation (e.g. a probability should be between 0 and 1, only `a` or `b` are expected values for parameter `y`), this was typically a run time failure - sometimes silent, sometimes explosive
+* If a user isn't using a feature of the model, they shouldn't have to worry about/carry around its parameters
+* Reproducibility of the run is key - must be able to re-run the model with the same params
+* We needed to be able to create common settings which described a specific world the model runs in and let users use those, but also override parameters as they needed for their run of the model
+
+How yams addresses these:
+* Parameter definitions require defaults
+* Can add descriptions of parameters inline
+* A small type system allows validation of params, as well as flexibility to define interfaces for params
+* Parameter files only need to fill in what they want different from the defaults
+* Can save off the fully computed params, which can then be re-used at a later date
+* Can layer different parameter files, allowing more complex defaults and re-use of common scenarios
+
 ## Getting Started
 
 ### Installation
@@ -23,13 +46,15 @@ The entrypoint for running yams is `yams.create_params`.  This takes the paramet
 **Returns:**
  * A dictionary representing the parsed parameters.
 
+
+**Example usage:**
 ```python
 from yams import create_params
 
-def_path = "my/params/dir" # file location of the params definitions
+def_path = "my/params/dir" # directory of the params definition files
 base_params = "base/params.yaml" # file location of the first params
-setting_param = "settings/my_setting" # file location of the second params
-intervention_params = "intervention/params" # file location of the third params
+setting_param = "settings/my_setting" # directory of the second params files
+intervention_params = "intervention/params" # directory of the third params files
 out_path = "./params.yml" # location to save computed params to
 
 params = create_params(
@@ -45,10 +70,12 @@ params = create_params(
 
 ## Parameter Definition
 
-The parameter definition language (PDL) provides expressions for defining input types, creation of types for the target application, and simple validation of input values.  The PDL itself is YAML and can be defined either in one file or a directory of yaml files.
+The parameter definition language (PDL) provides expressions for defining input types, creation of types for the target application, and simple validation of input values.  The PDL itself is YAML and can be defined either in one file or a directory of yaml files. There can be multiple root keys in the parameter definition to namespace parameters by topic, and parameter definitions can be deeply nested for further organization of the params.  Only the `classes` key at the root of the definitions has special meaning (see [Using Classes](#using-classes)).
 
 **An example params definition:**
 ```yml
+# classes is a special parameter key that allows the params defined as sub-keys
+# to be used in definitions for other sections
 classes:
   animals:
     type: definition
@@ -86,7 +113,7 @@ classes:
           - turtle
   locations:
     type: array
-    description: Where do the animals go?
+    description: Where do the animals live?
     default:
       - barn
       - ocean
@@ -96,6 +123,8 @@ classes:
       - sky
       - woods
 
+# demographics is another root-level parameter, which facets off of the values in classes
+# then has parameter definitions for each of those combinations
 demographics:
   type: sub-dict
   description: "Parameters controlling population class level probabilities and behaviors"
@@ -105,7 +134,7 @@ demographics:
   default:
     num:
       type: int
-      default: 10
+      default: 0
       description: Number of animals of this type at this location
     prob_happy:
       type: float
@@ -113,15 +142,21 @@ demographics:
       description: Probability an animal is happy
       min: 0.0
       max: 1.0
-    color:
-      type: enum
-      default: blue
-      description: What's the color of this animal/location combo
-      values:
-        - blue
-        - indigo
-        - cyan
+    flag: # parameter definitions can be nested in intermediate keys to group related items
+      color:
+        type: enum
+        default: blue
+        description: What's the color is the flag of this animal/location combo
+        values:
+          - blue
+          - indigo
+          - cyan
+      name:
+        type: any
+        default: animal land
+        description: What is the name of this animal/location combo's flag
 
+# neighbors is another root-level parameter
 neighbors:
   type: definition
   description: Definition of an edge (relationship) between two locations
@@ -145,6 +180,68 @@ neighbors:
       distance: 1000
 
 ```
+
+**An example of parameters for the definition above**
+```yml
+classes:
+  animals:
+    pig: # doesn't need a `goes` key as the default is oink and that is appropriate
+      is_mammal: true
+      friends_with:
+        - pig
+    fish: # fish don't need to specify `is_mammal` as false as that is the default
+      goes: glugglug
+      friends_with:
+        - fish
+    wolf:
+      goes: ooooooooo
+      is_mammal: true
+      friends_with:
+        - pig
+  locations:
+    - ocean
+    - woods
+    - barn
+
+# the calculated params will fill in the default values for combinations of
+# animals/colors/parameters that aren't specified below
+demographics:
+  pig:
+    barn:
+      num: 20
+      flag:
+        color: cyan
+        name: piney porcines
+  wolf:
+    woods:
+      num: 1
+      prob_happy: 0.8
+      flag:
+        name: running solo
+  fish:
+    ocean:
+      num: 1000001
+      prob_happy: 0.4
+      flag:
+        color: indigo
+        name: cool school
+
+# we're defining a edges in a graph in this example, the names are labels for human readability only
+neighbors:
+  woodsy_barn:
+    location_1: woods
+    location_2: barn
+    distance: 1
+  woodsy_ocean:
+    location_1: woods
+    location_2: ocean
+    distance: 3
+  barn_ocean:
+    location_1: barn
+    location_2: ocean
+    distance: 4
+```
+
 
 Parameters are defined as key value pairs (typically nested).  There are some reserved keys that allow for definition of a parameter item, but otherwise a key in the parameter definition is interpreted as an expected key in the parameters.
 
