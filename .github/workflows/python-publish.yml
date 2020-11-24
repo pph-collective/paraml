@@ -36,7 +36,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
 
     - name: Test with pytest
-      run: poetry run pytest --cov=paraml --cov-report=xml
+      run: poetry run pytest
 
     - name: Build and publish
       env:
