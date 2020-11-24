@@ -8,12 +8,12 @@ paraml is a parameter definition language and parser - all in yaml.
 
 1. [Motivation](#motivation)
 2. [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Running paraml](#running-paraml)
+    - [Installation](#installation)
+    - [Running paraml](#running-paraml)
 3. [Parameter Definition](#parameter-definition)
-  - [Required Keys](#required-keys)
-  - [Types](#types)
-  - [Using Classes](#using-classes)
+    - [Required Keys](#required-keys)
+    - [Types](#types)
+    - [Using Classes](#using-classes)
 
 ## Motivation
 paraml is a spinoff from [TITAN](https://github.com/marshall-lab/TITAN), an agent based model.  We have many parameters in that model, many of which are not used in a given run. paraml addresses the following pain points we had:
@@ -39,7 +39,7 @@ How paraml addresses these:
 ### Installation
 
 ```
-pip install yaml-params
+pip install paraml
 ```
 
 ### Running paraml
@@ -290,6 +290,17 @@ The `description` is a free text field to provide context for the parameter item
 ### Types
 
 The `type` of a parameter definition dictates which other fields are required/used when parsing the definition.
+
+The types supported by paraml are:
+* [`int`](#int)
+* [`float`](#float)
+* [`boolean`](#boolean)
+* [`array`](#array)
+* [`enum`](#enum)
+* [`any`](#any)
+* [`bin`](#bin)
+* [`sub-dict`](#sub-dict)
+* [`definition`](#definition)
 
 #### `int`
 
