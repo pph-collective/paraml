@@ -631,3 +631,51 @@ animals:
 ### Using Classes
 
 The `classes` key as a root key of the parameter definitions takes on special meaning.  The parameters chosen in this section can be used to determine acceptable values in other sections of the params (via `enum` and `array` types), or to determine what params need to be created (via `sub-dict` type).
+
+Example class as value:
+```yml
+classes:
+  month:
+    type: definition
+    fields:
+      mean_temp:
+        type: float
+        description: average temperature in °F
+    default:
+      april:
+        mean_temp: 45.6
+
+shearing:
+  month:
+    type: enum
+    description: what season to shear animals
+    class: month # This enum will only allow a value from the "month" class
+    default: april
+  to_shear:
+    type: array
+    description: which animals need to be sheared
+    class: animal
+    default:
+      - sheep
+```
+Example usage of class as value:
+```yml
+classes:
+  animals:
+    sheep:
+      goes: baaaah
+      is_mammal: true
+    cat:
+      goes: meow
+      is_mammal: true
+    llama:
+      goes: spits
+      is_mammaL: true
+  ## we will only be using "spring," which is the default month, so no definition needed!
+
+shearing:
+  month: april
+  to_shear:
+    - sheep
+    - llama
+```
