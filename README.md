@@ -635,6 +635,22 @@ The `classes` key as a root key of the parameter definitions takes on special me
 Example class as value:
 ```yml
 classes:
+  animals:
+    type: definition
+    description: Animals included in model
+    fields:
+      goes:
+        type: any
+        description: What noise does the animal make?
+        default: oink
+      is_mammal:
+        type: boolean
+        description: Is this animal a mammal
+        default: false
+  default:
+    cat:
+      goes: meow
+      is_mammal: true
   month:
     type: definition
     fields:
@@ -671,8 +687,7 @@ classes:
     llama:
       goes: spits
       is_mammaL: true
-  ## we will only be using "spring," which is the default month, so no definition needed!
-
+  ## we will only be using "april," which is the default month, so no definition needed!
 shearing:
   month: april
   to_shear:
