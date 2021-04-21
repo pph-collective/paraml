@@ -647,10 +647,13 @@ classes:
         type: boolean
         description: Is this animal a mammal
         default: false
-  default:
-    cat:
-      goes: meow
-      is_mammal: true
+    default:
+      cat:
+        goes: meow
+        is_mammal: true
+      sheep:
+        goes: baaaah
+        is_mammal: true
   month:
     type: definition
     fields:
@@ -686,8 +689,8 @@ classes:
       is_mammal: true
     llama:
       goes: spits
-      is_mammaL: true
-  ## we will only be using "april," which is the default month, so no definition needed!
+      is_mammal: true
+## we will only be using "april," which is the default month, so no definition needed!
 shearing:
   month: april
   to_shear:
